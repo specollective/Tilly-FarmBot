@@ -8,3 +8,4 @@ https://openagriculturefoundation.github.io/
 
 https://forum.goatech.org/
 
+https://wiki.opensourceecology.de/AgroCircle
