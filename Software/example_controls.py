@@ -11,7 +11,10 @@ import threading
 # ==========================================================
 
 
+
 class MyHandler:
+    
+
     def __init__(self, bot):
         # Store "W", "A", "S", "D" in a queue
         self.queue = []
@@ -19,6 +22,9 @@ class MyHandler:
         # ready for more commands.
         self.busy = True
         self.bot = bot
+        self.bot_x = 0
+        self.bot_y = 0
+        self.bot_z = 0
 
     def add_job(self, direction):
         d = direction.capitalize()
@@ -32,12 +38,16 @@ class MyHandler:
             print("sending " + command)
             self.busy = True
             if command == "W":
+                self.bot_x += 10
                 return self.bot.move_relative(10, 0, 0)
             if command == "A":
+                self.bot_y += -10
                 return self.bot.move_relative(0, -10, 0)
             if command == "S":
+                self.bot_x += -10
                 return self.bot.move_relative(-10, 0, 0)
             if command == "D":
+                self.bot_y += 10
                 return self.bot.move_relative(0, 10, 0)
 
     def on_connect(self, bot, mqtt_client):
@@ -56,7 +66,7 @@ class MyHandler:
         self.try_next_job()
 
     def on_log(self, _bot, log):
-        print("LOG: " + log['message'])
+        print("LOG: " + log['message'] + f" total is ({self.bot_x},{self.bot_y},{self.bot_z})", )
 
     def on_response(self, _bot, _response):
         pass
@@ -67,8 +77,19 @@ class MyHandler:
 
 
 if __name__ == '__main__':
-    raw_token = FarmbotToken.download_token(
-        "usr@name.com", "pass", "https://my.farm.bot")
+    # import Farmbot Web Account credentials
+    fileFarmbotWebAccount = open("FarmbotWebAccount.txt", "r")
+    usernameFarmbotWebAccount = fileFarmbotWebAccount.readline()
+    passwordFarmbotWebAccount = fileFarmbotWebAccount.readline()
+
+    # Before we begin, we must download an access token from the
+    # API. To avoid copy/pasting passwords, it is best to create
+    # an access token and then store that token securely:
+    raw_token = FarmbotToken.download_token(usernameFarmbotWebAccount,
+                                            passwordFarmbotWebAccount,
+                                            "https://my.farm.bot")
+
+    # This token is then passed to the Farmbot constructor:
     fb = Farmbot(raw_token)
     handler = MyHandler(fb)
     threading.Thread(target=fb.connect, name="foo", args=[handler]).start()

@@ -1,4 +1,6 @@
-# next task, use example controller, move robot out of bounds will storing the global  value, and reset the statte of the bot.
+# next task, try motor controller
+#concerns; sensor reset on power
+#Moteus R4.5, can communication
 
 from farmbot import Farmbot, FarmbotToken
 import json
