@@ -27,6 +27,10 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     char command = Serial.read();
+
+     Serial.print("Received: ");    // Print to Serial Monitor for debugging
+     Serial.println(command);       // Print the received character
+
     switch (command) {
       case 'w': // Up arrow key: All motors in one direction
         motorControl(true, true, true);

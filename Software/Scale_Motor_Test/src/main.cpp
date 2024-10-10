@@ -34,7 +34,7 @@ void setup() {
   motorControl(true, true, true, 255); // 255 is the maximum PWM value (full speed)
 
   // Wait for 2 seconds
-  delay(2000);
+  delay(10000);
 
   // Stop all motors
   motorControlStop();
