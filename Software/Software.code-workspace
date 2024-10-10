@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Scale_WIFI_Serial_esp32",
+			"path": "Scale_WIFI_Serial_esp32"
+		}
+	],
+	"settings": {}
+}
