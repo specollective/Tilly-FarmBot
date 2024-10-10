@@ -6,6 +6,14 @@
 		{
 			"name": "Scale_WIFI_Serial_esp32",
 			"path": "Scale_WIFI_Serial_esp32"
+		},
+		{
+			"name": "esp32_connect_to_arduino_TCP",
+			"path": "Scale_Arduino_esp3_Communication/esp32_connect_to_arduino_TCP"
+		},
+		{
+			"name": "arduino_from_esp32_to_serial",
+			"path": "Scale_Arduino_esp3_Communication/arduino_from_esp32_to_serial"
 		}
 	],
 	"settings": {}
